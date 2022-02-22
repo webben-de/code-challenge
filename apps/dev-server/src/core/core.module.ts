@@ -1,12 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { resolve } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: [resolve(__dirname, 'assets', '.env.local')],
       isGlobal: true
     }),
     TypeOrmModule.forRoot({

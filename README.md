@@ -35,9 +35,8 @@ run first  `npm install` to install the dependecies
 
 ### Configure Database
 
-Please create the `.env.local` see picture under apps/dev-server/assets
+Please create the `.env.local` see picture under root
 
-![image](https://user-images.githubusercontent.com/797537/155092794-a948dc17-3dea-499a-b212-0dbd99e76a77.png)
 
 ```
 DATABASE_USER=root
