@@ -33,11 +33,33 @@ Speed is more important than perfectionism, but quality is more important than q
 
 run first  `npm install` to install the dependecies
 
+### Configure Database
+
+Please create the `.env.local` see picture under apps/dev-server/assets
+
+![image](https://user-images.githubusercontent.com/797537/155092794-a948dc17-3dea-499a-b212-0dbd99e76a77.png)
+
+```
+DATABASE_USER=root
+DATABASE_PASSWORD=root_password
+DATABASE_PORT=5435
+DATABASE_DB_NAME=tss
+PORT=3400
+```
+
+#### Run Database
+is needed before you serve the backend
+
+`docker-compose up -d`
+
 #### Run Backend
 
 `npm run nx -- serve dev-server`
-
+- [healtcheck](http://localhost:3400/api)
+- [center-matrix](http://localhost:3400/api/center-matrix)
 - [overview APi](http://localhost:3400/api-reference/)
+
+> to write data int the table execute the `Get` endpoint without params [http://localhost:3400/api/center-matrix](http://localhost:3400/api/center-matrix)
 
 
 ### Run frontend
