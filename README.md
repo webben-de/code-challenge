@@ -39,6 +39,8 @@ run first  `npm install` to install the dependecies
 
 - [overview APi](http://localhost:3400/api-reference/)
 
+> to write data int the table execute the `Get` endpoint without params [http://localhost:3400/api/center-matrix](http://localhost:3400/api/center-matrix)
+
 
 ### Run frontend
 
