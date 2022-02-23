@@ -13,7 +13,7 @@ Create a list of entries (Preferable would be Filterable List)
 Update existing Entry and save it into database
 
 ### Delete:
-Delte a Entry from the list (Preferable with a modal confirmation)
+Delete a entry from the list (Preferable with a modal confirmation)
 
 ### Preparing:
 You need Docker Compose and Node>=16 installed on your local machine
@@ -30,7 +30,7 @@ Speed is more important than perfectionism, but quality is more important than q
 
 
 ## Start the given environment
-
+Fork the Repository and after pull your Fork
 run first  `npm install` to install the dependecies
 
 ### Configure Database
