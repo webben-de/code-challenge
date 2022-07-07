@@ -18,7 +18,6 @@ export class CenterMatrixService {
 
   async getLocations() {
     const count = await this.count();
-    console.log(typeof count, 'countytpe');
     if (count === 0) {
       console.log('no locations');
       const loctions = await this.mockLocations();
