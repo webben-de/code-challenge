@@ -1,0 +1,58 @@
+<h1>Centers</h1>
+
+<h2>Create a Center</h2>
+<form action="" [formGroup]="formGroup" (ngSubmit)="this.submit()">
+  <input type="text" placeholder="id" formControlName="id" />
+  <input type="text" placeholder="center_name" formControlName="center_name" />
+  <input
+    type="text"
+    placeholder="GSSN_COMPANYID"
+    formControlName="GSSN_COMPANYID"
+  />
+  <input
+    type="text"
+    placeholder="GSSN_OUTLETID"
+    formControlName="GSSN_OUTLETID"
+  />
+  <input type="text" placeholder="vd_name" formControlName="vd_name" />
+  <input type="text" placeholder="vfnr" formControlName="vfnr" />
+  <input type="text" placeholder="vfnr_hb" formControlName="vfnr_hb" />
+  <input type="text" placeholder="mode" formControlName="mode" />
+  <input type="text" placeholder="sortorder" formControlName="sortorder" />
+  <input type="text" placeholder="brand" formControlName="brand" />
+  <input type="text" placeholder="status" formControlName="status" />
+  <input type="text" placeholder="shortcut" formControlName="shortcut" />
+  <input
+    type="text"
+    placeholder="company_name"
+    formControlName="company_name"
+  />
+  <input type="text" placeholder="branch" formControlName="branch" />
+  <input type="text" placeholder="street" formControlName="street" />
+  <input type="text" placeholder="zip" formControlName="zip" />
+  <input type="text" placeholder="place" formControlName="place" />
+  <input type="text" placeholder="region" formControlName="region" />
+  <input type="text" placeholder="phone" formControlName="phone" />
+  <input type="text" placeholder="website" formControlName="website" />
+  <button>Submit</button>
+</form>
+<h2>Center Count</h2>
+<span>{{ this.locationsCount | async }}</span>
+<h2>Center Collection</h2>
+<input type="text" name="listfilter" [(ngModel)]="centerFilterValue" />
+<ul>
+  <li
+    (click)="fillFormToUpdate(location)"
+    *ngFor="
+      let location of this.locations
+        | async
+        | centerListFilter: centerFilterValue
+        | sortCenter
+    "
+  >
+    {{ location.center_name }}
+    <button *ngIf="location.id" (click)="this.deleteLocation(location.id)">
+      delete
+    </button>
+  </li>
+</ul>
