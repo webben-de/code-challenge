@@ -1,58 +1,354 @@
-<h1>Centers</h1>
+<div
+  id="edit"
+  class="fixed right-1 top-2 bg-slate-200 rounded-lg z-20 p-8 flex flex-col gap-4"
+  [class.hidden]="!this.showCreateDialog"
+>
+  <div class="flex justify-between p-2">
+    <h2 class="text-xl text-slate-800">Create a Center</h2>
+    <button (click)="this.showCreateDialog = false">X</button>
+  </div>
+  <hr />
 
-<h2>Create a Center</h2>
-<form action="" [formGroup]="formGroup" (ngSubmit)="this.submit()">
-  <input type="text" placeholder="id" formControlName="id" />
-  <input type="text" placeholder="center_name" formControlName="center_name" />
-  <input
-    type="text"
-    placeholder="GSSN_COMPANYID"
-    formControlName="GSSN_COMPANYID"
-  />
-  <input
-    type="text"
-    placeholder="GSSN_OUTLETID"
-    formControlName="GSSN_OUTLETID"
-  />
-  <input type="text" placeholder="vd_name" formControlName="vd_name" />
-  <input type="text" placeholder="vfnr" formControlName="vfnr" />
-  <input type="text" placeholder="vfnr_hb" formControlName="vfnr_hb" />
-  <input type="text" placeholder="mode" formControlName="mode" />
-  <input type="text" placeholder="sortorder" formControlName="sortorder" />
-  <input type="text" placeholder="brand" formControlName="brand" />
-  <input type="text" placeholder="status" formControlName="status" />
-  <input type="text" placeholder="shortcut" formControlName="shortcut" />
-  <input
-    type="text"
-    placeholder="company_name"
-    formControlName="company_name"
-  />
-  <input type="text" placeholder="branch" formControlName="branch" />
-  <input type="text" placeholder="street" formControlName="street" />
-  <input type="text" placeholder="zip" formControlName="zip" />
-  <input type="text" placeholder="place" formControlName="place" />
-  <input type="text" placeholder="region" formControlName="region" />
-  <input type="text" placeholder="phone" formControlName="phone" />
-  <input type="text" placeholder="website" formControlName="website" />
-  <button>Submit</button>
-</form>
-<h2>Center Count</h2>
-<span>{{ this.locationsCount | async }}</span>
-<h2>Center Collection</h2>
-<input type="text" name="listfilter" [(ngModel)]="centerFilterValue" />
-<ul>
-  <li
-    (click)="fillFormToUpdate(location)"
-    *ngFor="
-      let location of this.locations
-        | async
-        | centerListFilter: centerFilterValue
-        | sortCenter
-    "
+  <form
+    action=""
+    [formGroup]="formGroup"
+    (ngSubmit)="this.submit()"
+    class="grid grid-cols-4 gap-2"
   >
-    {{ location.center_name }}
-    <button *ngIf="location.id" (click)="this.deleteLocation(location.id)">
-      delete
-    </button>
-  </li>
-</ul>
+    <div class="form-control">
+      <label class="label" for=""><span class="label-text">ID</span></label>
+      <input class="input" type="text" placeholder="id" formControlName="id" />
+    </div>
+    <div class="form-control">
+      <label class="label" for=""
+        ><span class="label-text">center_name</span></label
+      >
+      <input
+        class="input"
+        type="text"
+        placeholder="center_name"
+        formControlName="center_name"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label" for=""
+        ><span class="label-text">GSSN_COMPANYID</span></label
+      >
+      <input
+        class="input"
+        type="text"
+        placeholder="GSSN_COMPANYID"
+        formControlName="GSSN_COMPANYID"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label" for=""
+        ><span class="label-text">GSSN_OUTLETID</span></label
+      >
+      <input
+        class="input"
+        type="text"
+        placeholder="GSSN_OUTLETID"
+        formControlName="GSSN_OUTLETID"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label" for=""
+        ><span class="label-text">vd_name</span></label
+      >
+      <input
+        class="input"
+        type="text"
+        placeholder="vd_name"
+        formControlName="vd_name"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label" for=""><span class="label-text">vfnr</span></label>
+      <input
+        class="input"
+        type="text"
+        placeholder="vfnr"
+        formControlName="vfnr"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label" for=""
+        ><span class="label-text">vfnr_hb</span></label
+      >
+      <input
+        class="input"
+        type="text"
+        placeholder="vfnr_hb"
+        formControlName="vfnr_hb"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label" for=""><span class="label-text">mode</span></label>
+      <input
+        class="input"
+        type="text"
+        placeholder="mode"
+        formControlName="mode"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label" for=""
+        ><span class="label-text">sortorder</span></label
+      >
+      <input
+        class="input"
+        type="text"
+        placeholder="sortorder"
+        formControlName="sortorder"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label" for=""><span class="label-text">brand</span></label>
+      <input
+        class="input"
+        type="text"
+        placeholder="brand"
+        formControlName="brand"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label" for=""><span class="label-text">status</span></label>
+      <input
+        class="input"
+        type="text"
+        placeholder="status"
+        formControlName="status"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label" for=""
+        ><span class="label-text">shortcut</span></label
+      >
+      <input
+        class="input"
+        type="text"
+        placeholder="shortcut"
+        formControlName="shortcut"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label" for=""
+        ><span class="label-text">company_name</span></label
+      >
+      <input
+        class="input"
+        type="text"
+        placeholder="company_name"
+        formControlName="company_name"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label" for=""><span class="label-text">branch</span></label>
+      <input
+        class="input"
+        type="text"
+        placeholder="branch"
+        formControlName="branch"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label" for=""><span class="label-text">Street</span></label>
+      <input
+        class="input"
+        placeholder="street"
+        formControlName="street"
+        type="text"
+      />
+    </div>
+
+    <div class="form-control">
+      <label class="label" for=""><span class="label-text">zip</span></label>
+      <input
+        class="input"
+        type="text"
+        placeholder="zip"
+        formControlName="zip"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label" for=""
+        ><span class="labplaceel-text">Place</span></label
+      >
+      <input
+        class="input"
+        type="text"
+        placeholder="place"
+        formControlName="place"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label" for=""><span class="label-text">region</span></label>
+      <input
+        class="input"
+        type="text"
+        placeholder="region"
+        formControlName="region"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label" for=""><span class="label-text">phone</span></label>
+      <input
+        class="input"
+        type="text"
+        placeholder="phone"
+        formControlName="phone"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label" for=""
+        ><span class="label-text">website</span></label
+      >
+      <input
+        class="input"
+        type="text"
+        placeholder="website"
+        formControlName="website"
+      />
+    </div>
+    <button class="btn">Submit</button>
+  </form>
+</div>
+
+<button
+  id="create-button"
+  class="fixed bottom-4 right-4 z-10 rounded-full bg-slate-800 flex justify-center items-center text-slate-50"
+  (click)="this.showCreateDialog = true"
+>
+  <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+  </svg>
+</button>
+
+<div
+  class="bg-gradient-to-br from-slate-50 to-slate-300 p-8 flex flex-col gap-4"
+>
+  <div class="flex justify-between">
+    <h1 class="text-xl text-slate-500 tracking-wider uppercase">Centers</h1>
+    <svg
+      class="w-12 h-12"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns="http://www.w3.org/2000/svg"
+      version="1.0"
+      width="80"
+      height="80"
+      id="svg3544"
+    >
+      <defs id="defs3546" />
+      <g id="layer1">
+        <path
+          d="M 57.63597,6.309 C 69.73497,12.672 77.99997,25.358 77.99997,39.981 C 77.99997,54.604 69.73497,67.33 57.63597,73.654 L 57.63597,69.306 C 62.26297,66.538 66.17697,62.665 69.02497,58.081 L 57.63597,53.458 L 57.63597,46.423 L 70.13097,56.185 C 72.74097,51.363 74.20397,45.869 74.20397,39.98 C 74.20397,27.57 67.55997,16.663 57.63597,10.655 L 57.63597,6.309 L 57.63597,6.309 z M 40.04,2.001 C 46.367,2.001 52.33697,3.543 57.63597,6.309 L 57.63597,10.657 C 52.77197,7.731 47.078,5.993 41.068,5.795 L 45.417,36.899 L 57.63597,46.424 L 57.63597,53.459 L 39.96,46.305 L 22.403,53.498 L 22.403,46.502 L 34.701,36.898 L 39.011,5.794 C 32.921,5.992 27.267,7.731 22.403,10.655 L 22.403,6.309 C 27.663,3.543 33.673,2.001 40.04,2.001 L 40.04,2.001 L 40.04,2.001 z M 57.63597,73.654 C 52.33697,76.42 46.366,78 40.04,78 C 33.674,78 27.664,76.42 22.404,73.693 L 22.404,69.306 C 27.545,72.427 33.594,74.206 40.04,74.206 C 46.446,74.206 52.45697,72.427 57.63597,69.306 L 57.63597,73.654 L 57.63597,73.654 z M 22.404,73.693 C 10.264,67.33 2,54.604 2,39.981 C 2,25.358 10.264,12.672 22.404,6.309 L 22.404,10.657 C 12.439,16.664 5.796,27.532 5.796,39.981 C 5.796,45.869 7.299,51.443 9.909,56.264 L 22.404,46.502 L 22.404,53.498 L 11.055,58.16 C 13.902,62.707 17.777,66.539 22.404,69.306 L 22.404,73.693 L 22.404,73.693 z"
+          id="path3524"
+          style="fill: #4d4d4d; fill-rule: evenodd"
+        />
+      </g>
+    </svg>
+  </div>
+  <div class="flex gap-2">
+    <div class="stats shadow w-1/4">
+      <div class="stat">
+        <div class="stat-title">Total Center Count</div>
+        <div class="stat-value">{{ this.locationsCount | async }}</div>
+      </div>
+    </div>
+    <div class="w-1/4 rounded-lg shadow bg-white p-4 flex flex-col gap-2">
+      <span class="stat-title">Search Center...</span>
+      <input
+        class="rounded-lg border text-sm text-slate-400 p-1"
+        type="text"
+        name="listfilter"
+        placeholder="Any text you like"
+        [(ngModel)]="centerFilterValue"
+      />
+    </div>
+  </div>
+  <div class="grid grid-cols-12 gap-2">
+    <div class="overflow-x-auto col-span-full">
+      <table class="table table-compact w-full">
+        <!-- head -->
+        <thead>
+          <tr>
+            <th></th>
+            <th>Center</th>
+            <th>Brand</th>
+            <th>Company</th>
+            <th>Branch</th>
+            <th></th>
+            <!-- <th>GSSN_OUTLETID</th>
+            <th>GSSN_COMPANYID</th>
+            <th>vd_name</th>
+            <th>vfnr</th>
+            <th>vfnr_hb</th>
+            <th>mode</th>
+            <th>sortorder</th>
+            <th>status</th>
+            <th>shortcut</th>
+            <th>street</th>
+            <th>zip</th>
+            <th>place</th>
+            <th>region</th>
+            <th>phone</th>
+            <th>website</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <!--  -->
+
+          <tr
+            (mouseenter)="hoveredItemId = location.id"
+            [class.hover]="hoveredItemId === location.id"
+            [class.active]="location.id === formGroup.value.id"
+            *ngFor="
+              let location of this.locations
+                | async
+                | centerListFilter: centerFilterValue
+                | sortCenter
+            "
+          >
+            <td>{{ location.id }}</td>
+            <td>{{ location.center_name }}</td>
+            <td>{{ location.brand }}</td>
+            <td>{{ location.company_name }}</td>
+            <td>{{ location.branch }}</td>
+            <td>
+              <div
+                class="flex"
+                *ngIf="location.id && location.id === hoveredItemId"
+              >
+                <button
+                  class="hover:shadow border-slate-700 rounded-sm transition text-slate-800"
+                  (click)="fillFormToUpdate(location)"
+                >
+                  <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
+                    <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
+                      <path
+                        fill="currentColor"
+                        d="M18 12.13V10H20V10.3C19.78 10.42 19.57 10.56 19.39 10.74L18 12.13M9.5 11C9.22 11 9 11.22 9 11.5V13H15V11.5C15 11.22 14.78 11 14.5 11H9.5M6 10H4V21H11V19.13L11.13 19H6V10M21 9H3V3H21V9M19 5H5V7H19V5M13 19.96V22H15.04L21.17 15.88L19.13 13.83L13 19.96M22.85 13.47L21.53 12.15C21.33 11.95 21 11.95 20.81 12.15L19.83 13.13L21.87 15.17L22.85 14.19C23.05 14 23.05 13.67 22.85 13.47Z"
+                      />
+                    </svg>
+                  </svg>
+                </button>
+                <button
+                  class="hover:shadow border-slate-700 rounded-sm transition text-slate-800"
+                  (click)="this.deleteLocation(location.id)"
+                >
+                  <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
+                    <path
+                      fill="currentColor"
+                      d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

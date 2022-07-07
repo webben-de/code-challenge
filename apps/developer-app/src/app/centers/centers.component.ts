@@ -12,6 +12,14 @@ import { CenterMatrixService } from '../center-matrix.service';
 })
 export class CentersComponent implements OnInit {
   /**
+   * the location id of the currently hoverd location
+   */
+  hoveredItemId?: number;
+  /**
+   * indicates if the dialog should be shown
+   */
+  showCreateDialog = false;
+  /**
    * an async list of locations
    */
   locations!: Observable<Location[]>;
@@ -97,5 +105,15 @@ export class CentersComponent implements OnInit {
    */
   fillFormToUpdate(loc: Location) {
     this.formGroup.patchValue(loc);
+    this.showCreateDialog = true;
+  }
+  /**
+   *
+   * @param index
+   * @param el
+   * @returns
+   */
+  trackByMethod(index: number, el: Location): number {
+    return el.id ? el.id : 0;
   }
 }
