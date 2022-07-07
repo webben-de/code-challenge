@@ -1,38 +1,31 @@
 {
+  "prefix": "tss-job-interview",
   "projectType": "application",
   "root": "apps/developer-app",
   "sourceRoot": "apps/developer-app/src",
-  "prefix": "tss-job-interview",
+  "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/apps/developer-app",
-        "index": "apps/developer-app/src/index.html",
-        "main": "apps/developer-app/src/main.ts",
-        "polyfills": "apps/developer-app/src/polyfills.ts",
-        "tsConfig": "apps/developer-app/tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
-        "assets": [
-          "apps/developer-app/src/favicon.ico",
-          "apps/developer-app/src/assets"
-        ],
-        "styles": ["apps/developer-app/src/styles.scss"],
-        "scripts": []
-      },
       "configurations": {
+        "development": {
+          "buildOptimizer": false,
+          "extractLicenses": false,
+          "namedChunks": true,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
         "production": {
           "budgets": [
             {
-              "type": "initial",
+              "maximumError": "1mb",
               "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "type": "initial"
             },
             {
-              "type": "anyComponentStyle",
+              "maximumError": "4kb",
               "maximumWarning": "2kb",
-              "maximumError": "4kb"
+              "type": "anyComponentStyle"
             }
           ],
           "fileReplacements": [
@@ -42,29 +35,29 @@
             }
           ],
           "outputHashing": "all"
-        },
-        "development": {
-          "buildOptimizer": false,
-          "optimization": false,
-          "vendorChunk": true,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
         }
       },
-      "defaultConfiguration": "production"
-    },
-    "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
-      "configurations": {
-        "production": {
-          "browserTarget": "developer-app:build:production"
-        },
-        "development": {
-          "browserTarget": "developer-app:build:development"
-        }
+      "defaultConfiguration": "production",
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "assets": [
+          "apps/developer-app/src/favicon.ico",
+          "apps/developer-app/src/assets"
+        ],
+        "index": "apps/developer-app/src/index.html",
+        "inlineStyleLanguage": "scss",
+        "main": "apps/developer-app/src/main.ts",
+        "outputPath": "dist/apps/developer-app",
+        "polyfills": "apps/developer-app/src/polyfills.ts",
+        "scripts": [],
+        "styles": [
+          "apps/developer-app/src/styles.scss"
+        ],
+        "tsConfig": "apps/developer-app/tsconfig.app.json"
       },
-      "defaultConfiguration": "development"
+      "outputs": [
+        "{options.outputPath}"
+      ]
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
@@ -81,14 +74,30 @@
         ]
       }
     },
+    "serve": {
+      "configurations": {
+        "development": {
+          "browserTarget": "developer-app:build:development"
+        },
+        "production": {
+          "browserTarget": "developer-app:build:production"
+        }
+      },
+      "defaultConfiguration": "development",
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "proxyConfig": "apps/developer-app/src/proxy.conf.json"
+      }
+    },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/developer-app"],
       "options": {
         "jestConfig": "apps/developer-app/jest.config.js",
         "passWithNoTests": true
-      }
+      },
+      "outputs": [
+        "coverage/apps/developer-app"
+      ]
     }
-  },
-  "tags": []
+  }
 }
