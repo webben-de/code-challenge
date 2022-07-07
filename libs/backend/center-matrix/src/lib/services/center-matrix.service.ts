@@ -34,19 +34,19 @@ export class CenterMatrixService {
   async remove(id) {
     return await this.locationRepo.delete(id);
   }
- async insert(values: ILocation) {
-   return await this.locationRepo.insert(values);
- }
-  private async mockLocations(){
+  async insert(values: ILocation) {
+    return await this.locationRepo.insert(values);
+  }
+  private async mockLocations() {
     const vds = ['Berlin', 'Nord'];
     vds.forEach(async (vd) => {
-      for( let i = 0; i <= 5; i++) {
+      for (let i = 0; i <= 5; i++) {
         const ndl = `Niederlassung ${faker.address.city()}`;
-        for( let i = 0; i <= faker.datatype.number({min: 10, max: 99}); i++) {
+        for (let i = 0; i <= faker.datatype.number({ min: 10, max: 99 }); i++) {
           await this.locationRepo.insert(this.location(vd, ndl));
         }
       }
-    })
+    });
 
     return await this.locationRepo.find();
   }
@@ -79,8 +79,8 @@ export class CenterMatrixService {
    */
   private location(vd, ndl): any {
     return {
-      GSSN_COMPANYID: 'GS'+faker.datatype.string(10),
-      GSSN_OUTLETID: 'GS'+ faker.datatype.string(10),
+      GSSN_COMPANYID: 'GS' + faker.datatype.string(10),
+      GSSN_OUTLETID: 'GS' + faker.datatype.string(10),
       vd_name: vd,
       vfnr: faker.datatype.number(5).toString(),
       mode: faker.random.arrayElement(['H', 'S']),
